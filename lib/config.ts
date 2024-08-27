@@ -171,6 +171,11 @@ export const posthogId = process.env.NEXT_PUBLIC_POSTHOG_ID
 export const posthogConfig: Partial<PostHogConfig> = {
   api_host: 'https://app.posthog.com'
 }
+// Tambahan untuk Google Analytics dan Google Tag Manager
+export const googleAnalyticsId: string | null =
+  process.env.NEXT_PUBLIC_GA_ID || null
+export const googleTagManagerId: string | null =
+  process.env.NEXT_PUBLIC_GTM_ID || null
 
 function cleanPageUrlMap(
   pageUrlMap: PageUrlOverridesMap,

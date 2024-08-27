@@ -19,10 +19,14 @@ import 'styles/notion.css'
 // global style overrides for prism theme (optional)
 import 'styles/prism-theme.css'
 
+import GoogleAnalytics from '@/components/analytics/GoogleAnalytics'
+import GoogleTagManager from '@/components/analytics/GoogleTagManager'
 import { bootstrap } from '@/lib/bootstrap-client'
 import {
   fathomConfig,
   fathomId,
+  googleAnalyticsId,
+  googleTagManagerId,
   isServer,
   posthogConfig,
   posthogId
@@ -31,7 +35,6 @@ import {
 if (!isServer) {
   bootstrap()
 }
-
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
 
@@ -61,5 +64,11 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   }, [router.events])
 
-  return <Component {...pageProps} />
+  return (
+    <>
+      <GoogleAnalytics measurementId={googleAnalyticsId} />
+      <GoogleTagManager gtmId={googleTagManagerId} />
+      <Component {...pageProps} />
+    </>
+  )
 }
